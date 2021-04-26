@@ -16,7 +16,7 @@ class Button extends Phaser.GameObjects.Sprite {
     }
 
     push() {
-        if(this.job == 'gotoPlay') this.scene.scene.start('playScene');
+        if(this.job == 'gotoPlay') this.scene.scene.start('playScene', {roadX: this.scene.road.tilePositionX});
         if(this.job == 'gotoInstructions') this.scene.scene.start('instructionsScene');
         if(this.job == 'gotoMenu') this.scene.scene.start('menuScene');
     }
