@@ -7,6 +7,7 @@ class Menu extends Phaser.Scene {
         this.load.image('road', './assets/road3.png');
         this.load.image('cabin', './assets/cabin1.png');
         this.load.image('trailer', './assets/trailer1.png');
+        this.load.image('button', './assets/button2.png');
     }
 
     create() {
@@ -21,6 +22,13 @@ class Menu extends Phaser.Scene {
             align: 'right'
         }
         this.add.text(324, 90, 'Egg Scramble', menuStyle).setOrigin(0.5);
+
+        new Button(this, 250, 300, 'button', 0, 'Play!', '36px', 'gotoPlay').setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});
+        new Button(this, 400, 300, 'button', 0, 'Instructions', '17px', 'gotoInstructions').setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});
+
+        this.input.on('gameobjectup', (pointer, gameObject, event) => {
+            gameObject.push();
+        });
     }
 
     update() {
