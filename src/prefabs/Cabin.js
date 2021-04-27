@@ -6,11 +6,11 @@ class Cabin extends Phaser.GameObjects.Sprite {
     }
 
     update() {
-        if(keyLEFT.isDown) {
+        if(keyUP.isDown) {
             this.y -= 4;
             if(this.y < 50) this.y = 50;
         }
-        if(keyRIGHT.isDown) {
+        if(keyDOWN.isDown) {
             this.y += 4;
             if(this.y > 260) this.y = 260;
         }

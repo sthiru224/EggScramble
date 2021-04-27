@@ -5,6 +5,7 @@ class Cone extends Phaser.GameObjects.Sprite {
         scene.add.existing(this);
 
         this.lane = lane;
+        this.isCollidable = true;
     }
 
     update() {
@@ -13,6 +14,8 @@ class Cone extends Phaser.GameObjects.Sprite {
             this.x = 972;
             if(Math.random() < 0.5) this.y = this.lane;
             else this.y = 165;
+            this.alpha = 1;
+            this.isCollidable = true;
         }
     }
 }

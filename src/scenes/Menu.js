@@ -32,6 +32,6 @@ class Menu extends Phaser.Scene {
     }
 
     update() {
-        this.road.tilePositionX += 3;
+        this.road.tilePositionX += 4;
     }
 }
