@@ -54,6 +54,8 @@ class Play extends Phaser.Scene {
                 this.cargo--;
                 this.cargoText.text = this.cargo;
             }
+            this.cabin.bump();
+            this.time.delayedCall(200, () => {this.trailer.bump();}, null, this);
         }
         if(this.checkCollision(this.cone1, this.trailer) && this.cone1.isCollidable) {
             this.cone1.alpha = 0;
@@ -62,6 +64,7 @@ class Play extends Phaser.Scene {
                 this.cargo--;
                 this.cargoText.text = this.cargo;
             }
+            this.trailer.bump();
         }
         if(this.checkCollision(this.cone2, this.cabin) && this.cone2.isCollidable) {
             this.cone2.alpha = 0;
@@ -70,6 +73,8 @@ class Play extends Phaser.Scene {
                 this.cargo--;
                 this.cargoText.text = this.cargo;
             }
+            this.cabin.bump();
+            this.time.delayedCall(200, () => {this.trailer.bump();}, null, this);
         }
         if(this.checkCollision(this.cone2, this.trailer) && this.cone2.isCollidable) {
             this.cone2.alpha = 0;
@@ -78,6 +83,7 @@ class Play extends Phaser.Scene {
                 this.cargo--;
                 this.cargoText.text = this.cargo;
             }
+            this.trailer.bump();
         }
         if(this.checkCollision(this.egg, this.cabin) && this.egg.isCollidable) {
             this.egg.alpha = 0;

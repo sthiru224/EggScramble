@@ -29,9 +29,24 @@ class Menu extends Phaser.Scene {
         this.input.on('gameobjectup', (pointer, gameObject, event) => {
             gameObject.push();
         });
+
+        this.bump();
     }
 
     update() {
         this.road.tilePositionX += 4;
+
+        this.cabin.bumpUpdate();
+        this.trailer.bumpUpdate();
+    }
+
+    bump() {
+        this.cabin.bump();
+        this.time.delayedCall(200, () => {this.trailer.bump();}, null, this);
+        this.time.delayedCall(275, () => {
+            this.cabin.y = 152;
+            this.trailer.y = 152;
+        }, null, this);
+        this.time.delayedCall(2000, () => {this.bump();}, null, this);
     }
 }
