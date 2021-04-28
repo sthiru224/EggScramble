@@ -14,7 +14,7 @@ class Egg extends Phaser.GameObjects.Sprite {
             let random = Math.random();
             if(random < 0.3333) this.y = 75;
             else if(random < 0.6666) this.y = 175;
-            else this.y = 175;
+            else this.y = 275;
             this.alpha = 1;
             this.isCollidable = true;
         }
