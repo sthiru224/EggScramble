@@ -18,7 +18,7 @@ class Cone extends Phaser.GameObjects.Sprite {
     }
 
     reset(stagger = 0) {
-        this.x = 972 + stagger;
+        this.x = 944 + stagger;
         if(Math.random() < 0.5) this.y = this.lane;
         else this.y = 165;
         this.alpha = 1;

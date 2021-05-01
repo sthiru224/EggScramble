@@ -10,11 +10,13 @@ class Play extends Phaser.Scene {
         this.load.image('cone', './assets/cone1.png');
         this.load.image('egg', './assets/egg1.png');
         this.load.image('bump', './assets/bump1.png');
+        this.load.image('checkpoint', './assets/checkpoint1.png');
     }
 
     create(data) {
         this.road = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'road').setOrigin(0, 0);
         this.road.tilePositionX = data.roadX;
+        this.checkpoint = new Checkpoint(this, 99999, 50, 'checkpoint', 0).setOrigin(0, 0);
         this.bump = new Bump(this, -28, 43, 'bump', 0).setOrigin(0, 0);
         this.cone1 = new Cone(this, 648, 65, 'cone', 0, 65).setOrigin(0, 0);
         this.cone2 = new Cone(this, 704, 265, 'cone', 0, 265).setOrigin(0, 0);
@@ -43,6 +45,7 @@ class Play extends Phaser.Scene {
     update() {
         this.road.tilePositionX += this.speed;
 
+        this.checkpoint.update();
         this.bump.update();
         this.cone1.update();
         this.cone2.update();

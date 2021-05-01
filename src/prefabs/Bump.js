@@ -17,7 +17,7 @@ class Bump extends Phaser.GameObjects.Sprite {
     }
 
     reset(stagger = 0) {
-        this.x = 972 + stagger;
+        this.x = 944 + stagger;
         this.isCollidable = true;
     }
 }
