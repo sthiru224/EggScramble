@@ -54,22 +54,23 @@ class Play extends Phaser.Scene {
         this.trailer.update();
         this.cargoText.y = this.trailer.y + 19;
 
+        if(keyLEFT.isDown) {
+            this.speed -= 0.1;
+            if(this.speed < 3) this.speed = 3;
+        }
+        if(keyRIGHT.isDown) {
+            this.speed += 0.1;
+            if(this.speed > 5) this.speed = 5;
+        }
+
         if(this.checkCollision(this.bump, this.cabin) && this.bump.isCollidable) {
             this.bump.isCollidable = false;
-            //if(this.cargo > 0) {
-                //this.cargo--;
-                //this.cargoText.text = this.cargo;
-            //}
+            if(this.speed > 4 && this.cargo > 0) {
+                this.cargo--;
+                this.cargoText.text = this.cargo;
+            }
             this.cabin.bump();
             this.time.delayedCall(200, () => {this.trailer.bump();}, null, this);
-        }
-        if(this.checkCollision(this.cone1, this.trailer) && this.cone1.isCollidable) {
-            this.bump.isCollidable = false;
-            //if(this.cargo > 0) {
-                //this.cargo--;
-                //this.cargoText.text = this.cargo;
-            //}
-            this.trailer.bump();
         }
         if(this.checkCollision(this.cone1, this.cabin) && this.cone1.isCollidable) {
             this.cone1.alpha = 0;
