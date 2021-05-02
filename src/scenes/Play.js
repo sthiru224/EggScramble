@@ -26,13 +26,29 @@ class Play extends Phaser.Scene {
         this.trailer = new Trailer(this, 12, 152, 'trailer', 0).setOrigin(0, 0);
         
         this.cargo = 0;
-        let cargoStyle = {
+        let cargoStyleB = {
             fontFamily: 'Righteous',
             fontSize: '48px',
+            color: '#000000',
+            align: 'right'
+        }
+        this.cargoTextB = this.add.text(84, 171, this.cargo, cargoStyleB).setOrigin(0.5);
+        let cargoStyleG = {
+            fontFamily: 'Righteous',
+            fontSize: '40px',
             color: '#ffbf00',
             align: 'right'
         }
-        this.cargoText = this.add.text(84, 171, this.cargo, cargoStyle).setOrigin(0.5);
+        this.cargoTextG = this.add.text(84, 171, this.cargo, cargoStyleG).setOrigin(0.5);
+
+        this.score = 0;
+        let scoreStyle = {
+            fontFamily: 'Righteous',
+            fontSize: '60px',
+            color: '#FFFFFF',
+            align: 'right'
+        }
+        this.scoreText = this.add.text(516, 24, "Score: " + this.score, scoreStyle).setOrigin(0.5);
 
         this.speed = 4;
 
@@ -52,7 +68,8 @@ class Play extends Phaser.Scene {
         this.egg.update();
         this.cabin.update();
         this.trailer.update();
-        this.cargoText.y = this.trailer.y + 19;
+        this.cargoTextB.y = this.trailer.y + 19;
+        this.cargoTextG.y = this.trailer.y + 19;
 
         if(keyLEFT.isDown) {
             this.speed -= 0.1;
@@ -63,11 +80,20 @@ class Play extends Phaser.Scene {
             if(this.speed > 5) this.speed = 5;
         }
 
+        if(this.checkCollision(this.checkpoint, this.cabin) && this.checkpoint.isCollidable) {
+            this.checkpoint.isCollidable = false;
+            this.score += this.cargo;
+            this.cargo = 0;
+            this.scoreText.text = "Score: " + this.score;
+            this.cargoTextB.text = this.cargo;
+            this.cargoTextG.text = this.cargo;
+        }
         if(this.checkCollision(this.bump, this.cabin) && this.bump.isCollidable) {
             this.bump.isCollidable = false;
             if(this.speed > 4 && this.cargo > 0) {
                 this.cargo--;
-                this.cargoText.text = this.cargo;
+                this.cargoTextB.text = this.cargo;
+                this.cargoTextG.text = this.cargo;
             }
             this.cabin.bump();
             this.time.delayedCall(200, () => {this.trailer.bump();}, null, this);
@@ -77,7 +103,8 @@ class Play extends Phaser.Scene {
             this.cone1.isCollidable = false;
             if(this.cargo > 0) {
                 this.cargo--;
-                this.cargoText.text = this.cargo;
+                this.cargoTextB.text = this.cargo;
+                this.cargoTextG.text = this.cargo;
             }
             this.cabin.bump();
             this.time.delayedCall(200, () => {this.trailer.bump();}, null, this);
@@ -87,7 +114,8 @@ class Play extends Phaser.Scene {
             this.cone1.isCollidable = false;
             if(this.cargo > 0) {
                 this.cargo--;
-                this.cargoText.text = this.cargo;
+                this.cargoTextB.text = this.cargo;
+                this.cargoTextG.text = this.cargo;
             }
             this.trailer.bump();
         }
@@ -96,7 +124,8 @@ class Play extends Phaser.Scene {
             this.cone2.isCollidable = false;
             if(this.cargo > 0) {
                 this.cargo--;
-                this.cargoText.text = this.cargo;
+                this.cargoTextB.text = this.cargo;
+                this.cargoTextG.text = this.cargo;
             }
             this.cabin.bump();
             this.time.delayedCall(200, () => {this.trailer.bump();}, null, this);
@@ -106,7 +135,8 @@ class Play extends Phaser.Scene {
             this.cone2.isCollidable = false;
             if(this.cargo > 0) {
                 this.cargo--;
-                this.cargoText.text = this.cargo;
+                this.cargoTextB.text = this.cargo;
+                this.cargoTextG.text = this.cargo;
             }
             this.trailer.bump();
         }
@@ -114,13 +144,15 @@ class Play extends Phaser.Scene {
             this.egg.alpha = 0;
             this.egg.isCollidable = false;
             this.cargo++;
-            this.cargoText.text = this.cargo;
+            this.cargoTextB.text = this.cargo;
+            this.cargoTextG.text = this.cargo;
         }
         if(this.checkCollision(this.egg, this.trailer) && this.egg.isCollidable) {
             this.egg.alpha = 0;
             this.egg.isCollidable = false;
             this.cargo++;
-            this.cargoText.text = this.cargo;
+            this.cargoTextB.text = this.cargo;
+            this.cargoTextG.text = this.cargo;
         }
     }
 
