@@ -22,7 +22,7 @@ class Trailer extends Phaser.GameObjects.Sprite {
     bump() {
         this.bumpDir = 1;
         this.scene.time.delayedCall(25, () => {this.bumpDir = 2;}, null, this.scene);
-        this.scene.time.delayedCall(50, () => {this.bumpDir = 0;}, null, this.scene);
+        this.scene.time.delayedCall(49, () => {this.bumpDir = 0;}, null, this.scene);
     }
 
     bumpUpdate() {
