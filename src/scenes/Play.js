@@ -14,6 +14,10 @@ class Play extends Phaser.Scene {
     }
 
     create(data) {
+        //bgmusic
+        // let PLAYmusic = this.sound.add('play_music');
+        // PLAYmusic.play();
+
         this.road = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'road').setOrigin(0, 0);
         this.road.tilePositionX = data.roadX;
         this.checkpoint = new Checkpoint(this, 99999, 50, 'checkpoint', 0).setOrigin(0, 0);
@@ -59,6 +63,12 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+        //bgmusic
+        // let PLAYmusic = this.sound.add('play_music');
+        // PLAYmusic.stop();
+        // PLAYmusic.play();
+        
+
         this.road.tilePositionX += this.speed;
 
         this.checkpoint.update();

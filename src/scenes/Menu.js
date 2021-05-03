@@ -4,6 +4,11 @@ class Menu extends Phaser.Scene {
     }
 
     preload() {
+        //bgmusic
+        this.load.audio('play_music', './assets/GameplayMusic.wav');
+        this.load.audio('menu_music', './assets/MenuMusic.wav');
+        this.load.audio('over_music', './assets/GameOverMusic.wav');
+
         this.load.image('road', './assets/road3.png');
         this.load.image('cabin', './assets/cabin1.png');
         this.load.image('trailer', './assets/trailer1.png');
@@ -11,6 +16,11 @@ class Menu extends Phaser.Scene {
     }
 
     create() {
+        //bgmusic
+        let MENUmusic = this.sound.add('menu_music');
+        MENUmusic.play();
+        //MENUmusic.stop();
+
         this.road = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'road').setOrigin(0, 0);
         this.cabin = new Cabin(this, 156, 152, 'cabin', 0).setOrigin(0, 0);
         this.trailer = new Trailer(this, 12, 152, 'trailer', 0).setOrigin(0, 0);
@@ -29,11 +39,11 @@ class Menu extends Phaser.Scene {
         this.input.on('gameobjectup', (pointer, gameObject, event) => {
             gameObject.push();
         });
-
         this.bump();
     }
 
     update() {
+
         this.road.tilePositionX += 4;
 
         this.cabin.bumpUpdate();
@@ -41,6 +51,7 @@ class Menu extends Phaser.Scene {
     }
 
     bump() {
+
         this.cabin.bump();
         this.time.delayedCall(200, () => {this.trailer.bump();}, null, this);
         this.time.delayedCall(275, () => {
