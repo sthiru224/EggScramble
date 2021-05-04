@@ -11,12 +11,14 @@ class Play extends Phaser.Scene {
         this.load.image('egg', './assets/egg1.png');
         this.load.image('bump', './assets/bump1.png');
         this.load.image('checkpoint', './assets/checkpoint1.png');
+        this.load.image('hole', './assets/hole1.png');
     }
 
     create(data) {
         this.road = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'road').setOrigin(0, 0);
         this.road.tilePositionX = data.roadX;
         this.checkpoint = new Checkpoint(this, 99999, 50, 'checkpoint', 0).setOrigin(0, 0);
+        this.hole = new Hole(this, -106, -106, 'hole', 0).setOrigin(0, 0);
         this.bump = new Bump(this, -28, 43, 'bump', 0).setOrigin(0, 0);
         this.cone1 = new Cone(this, 648, 65, 'cone', 0, 65).setOrigin(0, 0);
         this.cone2 = new Cone(this, 704, 265, 'cone', 0, 265).setOrigin(0, 0);
@@ -62,6 +64,7 @@ class Play extends Phaser.Scene {
         this.road.tilePositionX += this.speed;
 
         this.checkpoint.update();
+        this.hole.update();
         this.bump.update();
         this.cone1.update();
         this.cone2.update();
@@ -170,12 +173,13 @@ class Play extends Phaser.Scene {
             this.cone1.reset(-56);
             this.cone2.reset(0);
             this.cone2.resetter = true;
+        } else if(random < 0.75) {
+            this.cone1.reset(-134);
+            this.hole.reset(0);
+            this.hole.resetter = true;
         } else {
             this.bump.reset(0);
             this.bump.resetter = true;
         }
-        //if(random < 0.3333) 
-        //else if(random < 0.6666) 
-        //else 
     }
 }
