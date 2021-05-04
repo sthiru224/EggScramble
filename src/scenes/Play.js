@@ -101,6 +101,14 @@ class Play extends Phaser.Scene {
             this.cargoTextB.text = this.cargo;
             this.cargoTextG.text = this.cargo;
         }
+        if(this.checkCollision(this.hole, this.cabin) && this.hole.isCollidable) {
+            this.hole.isCollidable = false;
+            this.scene.start('gameOverScene', {roadX: this.road.tilePositionX});
+        }
+        if(this.checkCollision(this.hole, this.trailer) && this.hole.isCollidable) {
+            this.hole.isCollidable = false;
+            this.scene.start('gameOverScene', {roadX: this.road.tilePositionX});
+        }
         if(this.checkCollision(this.bump, this.cabin) && this.bump.isCollidable) {
             this.bump.isCollidable = false;
             if(this.speed > 4 && this.cargo > 0) {
