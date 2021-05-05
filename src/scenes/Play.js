@@ -102,14 +102,17 @@ class Play extends Phaser.Scene {
             this.cargoTextG.text = this.cargo;
         }
         if(this.checkCollision(this.hole, this.cabin) && this.hole.isCollidable) {
+            this.sound.play('hole');
             this.hole.isCollidable = false;
             this.scene.start('gameOverScene', {roadX: this.road.tilePositionX});
         }
         if(this.checkCollision(this.hole, this.trailer) && this.hole.isCollidable) {
+            this.sound.play('hole');
             this.hole.isCollidable = false;
             this.scene.start('gameOverScene', {roadX: this.road.tilePositionX});
         }
         if(this.checkCollision(this.bump, this.cabin) && this.bump.isCollidable) {
+            this.sound.play('bump1');
             this.bump.isCollidable = false;
             if(this.speed > 4 && this.cargo > 0) {
                 this.cargo--;
@@ -120,6 +123,7 @@ class Play extends Phaser.Scene {
             this.time.delayedCall(200, () => {this.trailer.bump();}, null, this);
         }
         if(this.checkCollision(this.cone1, this.cabin) && this.cone1.isCollidable) {
+            this.sound.play('cone1');
             this.cone1.alpha = 0;
             this.cone1.isCollidable = false;
             if(this.cargo > 0) {
@@ -131,6 +135,7 @@ class Play extends Phaser.Scene {
             this.time.delayedCall(200, () => {this.trailer.bump();}, null, this);
         }
         if(this.checkCollision(this.cone1, this.trailer) && this.cone1.isCollidable) {
+            this.sound.play('cone1');
             this.cone1.alpha = 0;
             this.cone1.isCollidable = false;
             if(this.cargo > 0) {
@@ -141,6 +146,7 @@ class Play extends Phaser.Scene {
             this.trailer.bump();
         }
         if(this.checkCollision(this.cone2, this.cabin) && this.cone2.isCollidable) {
+            this.sound.play('cone2');
             this.cone2.alpha = 0;
             this.cone2.isCollidable = false;
             if(this.cargo > 0) {
@@ -152,6 +158,7 @@ class Play extends Phaser.Scene {
             this.time.delayedCall(200, () => {this.trailer.bump();}, null, this);
         }
         if(this.checkCollision(this.cone2, this.trailer) && this.cone2.isCollidable) {
+            this.sound.play('cone2');
             this.cone2.alpha = 0;
             this.cone2.isCollidable = false;
             if(this.cargo > 0) {
@@ -162,6 +169,7 @@ class Play extends Phaser.Scene {
             this.trailer.bump();
         }
         if(this.checkCollision(this.egg, this.cabin) && this.egg.isCollidable) {
+            this.sound.play('eggcollect');
             this.egg.alpha = 0;
             this.egg.isCollidable = false;
             this.cargo++;
@@ -169,6 +177,7 @@ class Play extends Phaser.Scene {
             this.cargoTextG.text = this.cargo;
         }
         if(this.checkCollision(this.egg, this.trailer) && this.egg.isCollidable) {
+            this.sound.play('eggcollect');
             this.egg.alpha = 0;
             this.egg.isCollidable = false;
             this.cargo++;

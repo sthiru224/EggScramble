@@ -8,6 +8,18 @@ class Menu extends Phaser.Scene {
         this.load.audio('play_music', './assets/GameplayMusic.wav');
         this.load.audio('menu_music', './assets/MenuMusic.wav');
         this.load.audio('over_music', './assets/GameOverMusic.wav');
+        this.load.audio('bump1', './assets/bump1.wav');
+        this.load.audio('bump2', './assets/bump2.wav');
+        this.load.audio('cone1', './assets/cone1.wav');
+        this.load.audio('cone2', './assets/cone2.wav');
+        this.load.audio('dropoff1', './assets/dropoff1.wav');
+        this.load.audio('dropoff2', './assets/dropoff2.wav');
+        this.load.audio('eggcollect', './assets/eggcollect.wav');
+        this.load.audio('hole', './assets/hole.wav');
+        this.load.audio('laneswitch1', './assets/carUp.wav');
+        this.load.audio('laneswitch2', './assets/carDown.wav');
+        this.load.audio('menuclick1', './assets/menuclick1.wav');
+        this.load.audio('menuclick2', './assets/menuclick2.wav');
 
         this.load.image('road', './assets/road3.png');
         this.load.image('cabin', './assets/cabin1.png');
@@ -19,7 +31,7 @@ class Menu extends Phaser.Scene {
         //bgmusic
         let MENUmusic = this.sound.add('menu_music');
         MENUmusic.play();
-        //MENUmusic.stop();
+        MENUmusic.stop();
 
         this.road = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'road').setOrigin(0, 0);
         this.cabin = new Cabin(this, 156, 152, 'cabin', 0).setOrigin(0, 0);

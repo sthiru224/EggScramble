@@ -13,11 +13,14 @@ class Button extends Phaser.GameObjects.Sprite {
         scene.add.text(x, y, text, buttonStyle).setOrigin(0.5);
 
         this.job = job;
+
+        this.menuclick1 = scene.sound.add('menuclick1');
+        this.menuclick2 = scene.sound.add('menuclick2');
     }
 
     push() {
-        if(this.job == 'gotoPlay') this.scene.scene.start('playScene', {roadX: this.scene.road.tilePositionX});
-        if(this.job == 'gotoInstructions') this.scene.scene.start('instructionsScene');
-        if(this.job == 'gotoMenu') this.scene.scene.start('menuScene');
+        if(this.job == 'gotoPlay') this.scene.scene.start('playScene', {roadX: this.scene.road.tilePositionX}), this.menuclick1.play();
+        if(this.job == 'gotoInstructions') this.scene.scene.start('instructionsScene'), this.menuclick2.play();
+        if(this.job == 'gotoMenu') this.scene.scene.start('menuScene'), this.menuclick1.play();
     }
 }
