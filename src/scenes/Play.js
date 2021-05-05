@@ -55,6 +55,11 @@ class Play extends Phaser.Scene {
         }
         this.scoreText = this.add.text(516, 24, "Score: " + this.score, scoreStyle).setOrigin(0.5);
 
+        this.maxTime = 30;
+        this.curTime = this.maxTime;
+        this.timerText = this.add.text(100, 24, "0:" + this.curTime, scoreStyle).setOrigin(0.5);
+        this.timer();
+
         this.speed = 4;
 
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -89,6 +94,9 @@ class Play extends Phaser.Scene {
 
         if(this.checkCollision(this.checkpoint, this.cabin) && this.checkpoint.isCollidable) {
             this.checkpoint.isCollidable = false;
+            if(this.maxTime > 23) this.maxTime -= 2;
+            this.curTime = this.maxTime;
+            this.timerText.text = '0:' + this.curTime;
             this.score += this.cargo;
             this.cargo = 0;
             this.scoreText.text = "Score: " + this.score;
@@ -204,5 +212,19 @@ class Play extends Phaser.Scene {
             this.bump.reset(0);
             this.bump.resetter = true;
         }
+    }
+
+    timer() {
+        this.time.delayedCall(1000, () => {
+            if(this.curTime == 0) {
+                this.sound.play('hole');
+                this.playMusic.stop();
+                this.scene.start('gameOverScene', {roadX: this.road.tilePositionX});
+            }
+            this.curTime--;
+            if(this.curTime > 9) this.timerText.text = '0:' + this.curTime;
+            else this.timerText.text = '0:0' + this.curTime;
+            this.timer();
+        }, null, this);
     }
 }
