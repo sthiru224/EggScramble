@@ -6,6 +6,7 @@ class Instructions extends Phaser.Scene {
     preload() {
         this.load.image('road', './assets/road3.png');
         this.load.image('button', './assets/button2.png');
+        this.load.image('instruct', './assets/GameInstructions.png');
     }
 
     create() {
@@ -17,9 +18,12 @@ class Instructions extends Phaser.Scene {
             color: '#FFFFFF',
             align: 'right'
         }
+
+        this.add.sprite(324,175,"instruct");
         
 
-        new Button(this, 324, 350, 'button', 0, 'Back', '36px', 'gotoMenu').setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});
+
+        new Button(this, 324, 360, 'button', 0, 'Back', '36px', 'gotoMenu').setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});
         
         this.input.on('gameobjectup', (pointer, gameObject, event) => {
             gameObject.push();
