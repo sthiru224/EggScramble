@@ -9,10 +9,12 @@ class Trailer extends Phaser.GameObjects.Sprite {
 
     update() {
         if(this.y < this.scene.cabin.y) {
-            if(this.scene.cabin.y - this.y < 30) this.y += 8;
+            if(this.scene.cabin.y - this.y < 8) this.y = this.scene.cabin.y;
+            else if(this.scene.cabin.y - this.y < 30) this.y += 8;
             else this.y += 16;
         } else if(this.y > this.scene.cabin.y) {
-            if(this.y - this.scene.cabin.y < 30) this.y -= 8;
+            if(this.y - this.scene.cabin.y < 8) this.y = this.scene.cabin.y;
+            else if(this.y - this.scene.cabin.y < 30) this.y -= 8;
             else this.y -= 16;
         }
         if(this.bumpDir == 1) this.y -= 8;
