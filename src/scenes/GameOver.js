@@ -9,6 +9,7 @@ class GameOver extends Phaser.Scene {
         this.load.image('cabin', './assets/cabin1.png');
         this.load.image('trailer', './assets/trailer1.png');
         this.load.image('button', './assets/button2.png');
+        this.load.image('deadegg', './assets/deadegg.png');
     }
 
     create(data) {
@@ -24,6 +25,8 @@ class GameOver extends Phaser.Scene {
             color: '#FFFFFF',
             align: 'right'
         }
+        this.add.sprite(324,210,"deadegg");
+
         this.add.text(324, 90, 'Game Over', menuStyle).setOrigin(0.5);
 
         new Button(this, 250, 300, 'button', 0, 'Play!', '36px', 'gotoPlay').setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});
