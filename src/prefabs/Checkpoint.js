@@ -17,7 +17,7 @@ class Checkpoint extends Phaser.GameObjects.Sprite {
             var value = Phaser.Math.Between(0, 1);
             console.log('random' + value);
 
-            // each number has a unique sound effect that will play when a bird is hit
+            // each number has a unique sound effect that will play when checkpoint is reached.
             if (value == 0){
                 this.dropoff1.play();
             }

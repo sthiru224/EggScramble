@@ -13,7 +13,8 @@ class Button extends Phaser.GameObjects.Sprite {
         scene.add.text(x, y, text, buttonStyle).setOrigin(0.5);
 
         this.job = job;
-
+        
+        // menu click sound effects
         this.menuclick1 = scene.sound.add('menuclick1');
         this.menuclick2 = scene.sound.add('menuclick2');
     }
