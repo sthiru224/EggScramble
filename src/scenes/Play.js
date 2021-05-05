@@ -12,6 +12,8 @@ class Play extends Phaser.Scene {
         this.load.image('bump', './assets/bump1.png');
         this.load.image('checkpoint', './assets/checkpoint1.png');
         this.load.image('hole', './assets/hole1.png');
+
+        this.load.spritesheet('coneexplode', './assets/conecrush.png', {frameWidth: 24, frameheight: 32, startFrame: 0, endFrame: 12});
     }
 
     create(data) {
@@ -66,6 +68,13 @@ class Play extends Phaser.Scene {
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+
+        // animation config
+        this.anims.create({
+            key: 'coneexplode',
+            frames: this.anims.generateFrameNumbers('coneexplode', { start: 0, end: 12, first: 0}),
+            frameRate: 30
+            });
     }
 
     update() {
@@ -128,7 +137,9 @@ class Play extends Phaser.Scene {
         }
         if(this.checkCollision(this.cone1, this.cabin) && this.cone1.isCollidable) {
             this.sound.play('cone1');
-            this.cone1.alpha = 0;
+            // this.cone1.alpha = 0;
+            console.log('OK');
+            this.coneExplode(this.cone1);
             this.cone1.isCollidable = false;
             if(this.cargo > 0) {
                 this.cargo--;
@@ -140,7 +151,9 @@ class Play extends Phaser.Scene {
         }
         if(this.checkCollision(this.cone1, this.trailer) && this.cone1.isCollidable) {
             this.sound.play('cone1');
-            this.cone1.alpha = 0;
+            // this.cone1.alpha = 0;
+            console.log('OK');
+            this.coneExplode(this.cone1);
             this.cone1.isCollidable = false;
             if(this.cargo > 0) {
                 this.cargo--;
@@ -151,7 +164,8 @@ class Play extends Phaser.Scene {
         }
         if(this.checkCollision(this.cone2, this.cabin) && this.cone2.isCollidable) {
             this.sound.play('cone2');
-            this.cone2.alpha = 0;
+            // this.cone2.alpha = 0;
+            this.coneExplode(this.cone2);
             this.cone2.isCollidable = false;
             if(this.cargo > 0) {
                 this.cargo--;
@@ -163,7 +177,8 @@ class Play extends Phaser.Scene {
         }
         if(this.checkCollision(this.cone2, this.trailer) && this.cone2.isCollidable) {
             this.sound.play('cone2');
-            this.cone2.alpha = 0;
+            // this.cone2.alpha = 0;
+            this.coneExplode(this.cone2);
             this.cone2.isCollidable = false;
             if(this.cargo > 0) {
                 this.cargo--;
@@ -226,5 +241,16 @@ class Play extends Phaser.Scene {
             else this.timerText.text = '0:0' + this.curTime;
             this.timer();
         }, null, this);
+    }
+
+    coneExplode(cone) {
+        cone.alpha = 0;
+        console.log('CONE');
+
+        let boom = this.add.sprite(cone.x, cone.y, 'coneexplode').setOrigin(0,0);
+        boom.anims.play('coneexplode');
+        boom.on('animationcomplete', () => {
+            boom.destroy();
+        });
     }
 }
