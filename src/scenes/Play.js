@@ -138,7 +138,6 @@ class Play extends Phaser.Scene {
         if(this.checkCollision(this.cone1, this.cabin) && this.cone1.isCollidable) {
             this.sound.play('cone1');
             // this.cone1.alpha = 0;
-            console.log('OK');
             this.coneExplode(this.cone1);
             this.cone1.isCollidable = false;
             if(this.cargo > 0) {
@@ -152,7 +151,6 @@ class Play extends Phaser.Scene {
         if(this.checkCollision(this.cone1, this.trailer) && this.cone1.isCollidable) {
             this.sound.play('cone1');
             // this.cone1.alpha = 0;
-            console.log('OK');
             this.coneExplode(this.cone1);
             this.cone1.isCollidable = false;
             if(this.cargo > 0) {
@@ -245,7 +243,6 @@ class Play extends Phaser.Scene {
 
     coneExplode(cone) {
         cone.alpha = 0;
-        console.log('CONE');
 
         let boom = this.add.sprite(cone.x, cone.y, 'coneexplode').setOrigin(0,0);
         boom.anims.play('coneexplode');
