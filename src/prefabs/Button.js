@@ -21,14 +21,10 @@ class Button extends Phaser.GameObjects.Sprite {
 
     push() {
         if(this.job == 'gotoPlay'){
+            if(this.scene.scene.isActive('menuScene')) this.scene.menuMusic.stop();
+            else if(this.scene.scene.isActive('gameOverScene')) this.scene.overMusic.stop();
             this.scene.scene.start('playScene', {roadX: this.scene.road.tilePositionX}), this.menuclick1.play();
-            this.scene.menuMusic.stop();
-            this.scene.overMusic.stop();
         }
-        // if(this.job == 'gotoPlay' && scene == Menu){
-        //     this.scene.scene.start('playScene', {roadX: this.scene.road.tilePositionX}), this.menuclick1.play();
-        //     this.scene.menuMusic.stop();
-        // }
 
         if(this.job == 'gotoInstructions'){
             this.scene.scene.start('instructionsScene'), this.menuclick2.play();
