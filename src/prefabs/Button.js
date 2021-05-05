@@ -20,8 +20,24 @@ class Button extends Phaser.GameObjects.Sprite {
     }
 
     push() {
-        if(this.job == 'gotoPlay') this.scene.scene.start('playScene', {roadX: this.scene.road.tilePositionX}), this.menuclick1.play();
-        if(this.job == 'gotoInstructions') this.scene.scene.start('instructionsScene'), this.menuclick2.play();
-        if(this.job == 'gotoMenu') this.scene.scene.start('menuScene'), this.menuclick1.play();
+        if(this.job == 'gotoPlay'){
+            this.scene.scene.start('playScene', {roadX: this.scene.road.tilePositionX}), this.menuclick1.play();
+            this.scene.menuMusic.stop();
+            this.scene.overMusic.stop();
+        }
+        // if(this.job == 'gotoPlay' && scene == Menu){
+        //     this.scene.scene.start('playScene', {roadX: this.scene.road.tilePositionX}), this.menuclick1.play();
+        //     this.scene.menuMusic.stop();
+        // }
+
+        if(this.job == 'gotoInstructions'){
+            this.scene.scene.start('instructionsScene'), this.menuclick2.play();
+            this.scene.menuMusic.stop();
+        }
+
+        if(this.job == 'gotoMenu'){ 
+            this.scene.scene.start('menuScene'), this.menuclick1.play();
+            this.scene.overMusic.stop();
+        }
     }
 }

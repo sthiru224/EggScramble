@@ -15,9 +15,8 @@ class Play extends Phaser.Scene {
     }
 
     create(data) {
-        //bgmusic
-        // let PLAYmusic = this.sound.add('play_music');
-        // PLAYmusic.play();
+        this.playMusic = this.sound.add('play_music',{volume:0.25,loop:true});
+        this.playMusic.play();
 
         this.road = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'road').setOrigin(0, 0);
         this.road.tilePositionX = data.roadX;
@@ -65,11 +64,6 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-        //bgmusic
-        // let PLAYmusic = this.sound.add('play_music');
-        // PLAYmusic.stop();
-        // PLAYmusic.play();
-        
 
         this.road.tilePositionX += this.speed;
 
@@ -104,11 +98,13 @@ class Play extends Phaser.Scene {
         if(this.checkCollision(this.hole, this.cabin) && this.hole.isCollidable) {
             this.sound.play('hole');
             this.hole.isCollidable = false;
+            this.playMusic.stop();
             this.scene.start('gameOverScene', {roadX: this.road.tilePositionX});
         }
         if(this.checkCollision(this.hole, this.trailer) && this.hole.isCollidable) {
             this.sound.play('hole');
             this.hole.isCollidable = false;
+            this.playMusic.stop();
             this.scene.start('gameOverScene', {roadX: this.road.tilePositionX});
         }
         if(this.checkCollision(this.bump, this.cabin) && this.bump.isCollidable) {

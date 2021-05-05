@@ -28,10 +28,8 @@ class Menu extends Phaser.Scene {
     }
 
     create() {
-        //bgmusic
-        let MENUmusic = this.sound.add('menu_music');
-        MENUmusic.play();
-        MENUmusic.stop();
+        this.menuMusic = this.sound.add('menu_music',{volume:0.25,loop:true});
+        this.menuMusic.play();
 
         this.road = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'road').setOrigin(0, 0);
         this.cabin = new Cabin(this, 156, 152, 'cabin', 0).setOrigin(0, 0);

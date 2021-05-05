@@ -4,11 +4,7 @@ class GameOver extends Phaser.Scene {
     }
 
     preload() {
-        //bgmusic
-        this.load.audio('play_music', './assets/GameplayMusic.wav');
-        this.load.audio('menu_music', './assets/MenuMusic.wav');
-        this.load.audio('over_music', './assets/GameOverMusic.wav');
-
+    
         this.load.image('road', './assets/road3.png');
         this.load.image('cabin', './assets/cabin1.png');
         this.load.image('trailer', './assets/trailer1.png');
@@ -16,10 +12,8 @@ class GameOver extends Phaser.Scene {
     }
 
     create(data) {
-        //bgmusic
-        let MENUmusic = this.sound.add('over_music');
-        MENUmusic.play();
-        //MENUmusic.stop();
+        this.overMusic = this.sound.add('over_music',{volume:0.25,loop:true});
+        this.overMusic.play();
 
         this.road = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'road').setOrigin(0, 0);
         this.road.tilePositionX = data.roadX;
