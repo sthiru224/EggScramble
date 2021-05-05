@@ -107,13 +107,13 @@ class Play extends Phaser.Scene {
             this.sound.play('hole');
             this.hole.isCollidable = false;
             this.playMusic.stop();
-            this.scene.start('gameOverScene', {roadX: this.road.tilePositionX});
+            this.scene.start('gameOverScene', {roadX: this.road.tilePositionX, score: this.score});
         }
         if(this.checkCollision(this.hole, this.trailer) && this.hole.isCollidable) {
             this.sound.play('hole');
             this.hole.isCollidable = false;
             this.playMusic.stop();
-            this.scene.start('gameOverScene', {roadX: this.road.tilePositionX});
+            this.scene.start('gameOverScene', {roadX: this.road.tilePositionX, score: this.score});
         }
         if(this.checkCollision(this.bump, this.cabin) && this.bump.isCollidable) {
             this.sound.play('bump1');
@@ -219,7 +219,7 @@ class Play extends Phaser.Scene {
             if(this.curTime == 0) {
                 this.sound.play('hole');
                 this.playMusic.stop();
-                this.scene.start('gameOverScene', {roadX: this.road.tilePositionX});
+                this.scene.start('gameOverScene', {roadX: this.road.tilePositionX, score: this.score});
             }
             this.curTime--;
             if(this.curTime > 9) this.timerText.text = '0:' + this.curTime;

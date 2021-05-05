@@ -25,9 +25,10 @@ class GameOver extends Phaser.Scene {
             color: '#FFFFFF',
             align: 'right'
         }
-        this.add.sprite(324,210,"deadegg");
+        this.add.sprite(324, 110,"deadegg");
 
-        this.add.text(324, 90, 'Game Over', menuStyle).setOrigin(0.5);
+        this.add.text(324, 24, 'Game Over', menuStyle).setOrigin(0.5);
+        this.add.text(324, 210, 'Eggs Saved: ' + data.score, menuStyle).setOrigin(0.5);
 
         new Button(this, 250, 300, 'button', 0, 'Play!', '36px', 'gotoPlay').setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});
         new Button(this, 400, 300, 'button', 0, 'Menu', '36px', 'gotoMenu').setOrigin(0.5, 0.5).setInteractive({useHandCursor: true});

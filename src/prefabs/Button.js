@@ -31,6 +31,11 @@ class Button extends Phaser.GameObjects.Sprite {
             this.scene.menuMusic.stop();
         }
 
+        if(this.job == 'gotoCredits'){
+            this.scene.scene.start('creditsScene'), this.menuclick2.play();
+            this.scene.menuMusic.stop();
+        }
+
         if(this.job == 'gotoMenu'){ 
             this.scene.scene.start('menuScene'), this.menuclick1.play();
             this.scene.overMusic.stop();
