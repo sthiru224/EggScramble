@@ -7,6 +7,8 @@ class Instructions extends Phaser.Scene {
         this.load.image('road', './assets/road3.png');
         this.load.image('button', './assets/button2.png');
         this.load.image('instruct', './assets/GameInstructions.png');
+        this.load.image('warbler', './assets/warbler.png');
+        this.load.image('warbler2', './assets/warbler2.png');
     }
 
     create() {
@@ -20,6 +22,8 @@ class Instructions extends Phaser.Scene {
         }
 
         this.add.sprite(324,175,"instruct");
+        this.add.sprite(70,340,"warbler");
+        this.add.sprite(600,80,"warbler2");
         
 
 
