@@ -9,14 +9,14 @@ class Trailer extends Phaser.GameObjects.Sprite {
 
     update() {
         if(this.y < this.scene.cabin.y) {
-            if(this.scene.cabin.y - this.y < 30) this.y += 2;
-            else this.y += 4;
+            if(this.scene.cabin.y - this.y < 30) this.y += 8;
+            else this.y += 16;
         } else if(this.y > this.scene.cabin.y) {
-            if(this.y - this.scene.cabin.y < 30) this.y -= 2;
-            else this.y -= 4;
+            if(this.y - this.scene.cabin.y < 30) this.y -= 8;
+            else this.y -= 16;
         }
-        if(this.bumpDir == 1) this.y -= 4;
-        if(this.bumpDir == 2) this.y += 4;
+        if(this.bumpDir == 1) this.y -= 8;
+        if(this.bumpDir == 2) this.y += 8;
     }
 
     bump() {
@@ -26,7 +26,7 @@ class Trailer extends Phaser.GameObjects.Sprite {
     }
 
     bumpUpdate() {
-        if(this.bumpDir == 1) this.y -= 4;
-        if(this.bumpDir == 2) this.y += 4;
+        if(this.bumpDir == 1) this.y -= 8;
+        if(this.bumpDir == 2) this.y += 8;
     }
 }

@@ -60,7 +60,7 @@ class Play extends Phaser.Scene {
         this.timerText = this.add.text(100, 24, "0:" + this.curTime, scoreStyle).setOrigin(0.5);
         this.timer();
 
-        this.speed = 4;
+        this.speed = 16;
 
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
@@ -84,12 +84,12 @@ class Play extends Phaser.Scene {
         this.cargoTextG.y = this.trailer.y + 19;
 
         if(keyLEFT.isDown) {
-            this.speed -= 0.1;
-            if(this.speed < 3) this.speed = 3;
+            this.speed -= 0.4;
+            if(this.speed < 12) this.speed = 12;
         }
         if(keyRIGHT.isDown) {
-            this.speed += 0.1;
-            if(this.speed > 5) this.speed = 5;
+            this.speed += 0.4;
+            if(this.speed > 20) this.speed = 20;
         }
 
         if(this.checkCollision(this.checkpoint, this.cabin) && this.checkpoint.isCollidable) {
@@ -118,7 +118,7 @@ class Play extends Phaser.Scene {
         if(this.checkCollision(this.bump, this.cabin) && this.bump.isCollidable) {
             this.sound.play('bump1');
             this.bump.isCollidable = false;
-            if(this.speed > 4 && this.cargo > 0) {
+            if(this.speed > 16 && this.cargo > 0) {
                 this.cargo--;
                 this.cargoTextB.text = this.cargo;
                 this.cargoTextG.text = this.cargo;

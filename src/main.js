@@ -23,7 +23,11 @@ let config = {
     type: Phaser.CANVAS,
     width: 648,
     height: 400,
-    scene: [ Loading, Menu, Instructions, Credits, Play, GameOver ]
+    scene: [ Loading, Menu, Instructions, Credits, Play, GameOver ],
+    fps: {
+        target: 30,
+        forceSetTimeOut: true
+    }
 }
 
 let game = new Phaser.Game(config);

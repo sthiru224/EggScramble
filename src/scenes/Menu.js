@@ -55,7 +55,7 @@ class Menu extends Phaser.Scene {
 
     update() {
 
-        this.road.tilePositionX += 4;
+        this.road.tilePositionX += 16;
 
         this.cabin.bumpUpdate();
         this.trailer.bumpUpdate();

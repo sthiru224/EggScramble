@@ -13,10 +13,10 @@ class Cabin extends Phaser.GameObjects.Sprite {
 
     update() {
         if(keyUP.isDown) {
-            this.y -= 4;
+            this.y -= 16;
         }
         if(keyDOWN.isDown) {
-            this.y += 4;
+            this.y += 16;
         }
 
         if (Phaser.Input.Keyboard.JustDown(keyUP) && !this.isFiring) {
@@ -31,8 +31,8 @@ class Cabin extends Phaser.GameObjects.Sprite {
             this.isFiring = false;
         }
 
-        if(this.bumpDir == 1) this.y -= 4;
-        if(this.bumpDir == 2) this.y += 4;
+        if(this.bumpDir == 1) this.y -= 8;
+        if(this.bumpDir == 2) this.y += 8;
         if(this.y < 50) this.y = 50;
         if(this.y > 260) this.y = 260;
     }
@@ -45,7 +45,7 @@ class Cabin extends Phaser.GameObjects.Sprite {
     }
 
     bumpUpdate() {
-        if(this.bumpDir == 1) this.y -= 4;
-        if(this.bumpDir == 2) this.y += 4;
+        if(this.bumpDir == 1) this.y -= 8;
+        if(this.bumpDir == 2) this.y += 8;
     }
 }
